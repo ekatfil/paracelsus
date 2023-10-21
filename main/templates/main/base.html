@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %}{% load sass_tags %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width" />
     <title>{{ title }}</title>
-    <link rel="stylesheet" href="/assets/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="{% sass_src "styles.scss" %}" type="text/css" media="all">
   </head>
   <body>
     {% block content %}{% endblock %}

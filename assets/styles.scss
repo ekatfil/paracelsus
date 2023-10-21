@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "JetBrains";
+  src: url(/static_root/fonts/JetBrains/JetBrainsMono-Regular.ttf);
+}
+
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+span,
+ul,
+li {
+  font-family: "Jetbrains";
+}
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+
+.rpk-container {
+  max-width: 1600px;
+  margin: auto;
+}
+.red {
+  background-color: red;
+}
+
+html {
+  background-color: aqua;
+}

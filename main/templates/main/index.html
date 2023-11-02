@@ -1,8 +1,205 @@
 {% extends "main/base.html" %}
-
 {% block content %}
+    <!-- Registrartion Modal -->
+    <div class="modal fade"
+         id="reg-modal"
+         data-bs-backdrop="static"
+         data-bs-keyboard="false"
+         tabindex="-1"
+         aria-labelledby="staticBackdropLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Регистрация</h5>
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="create_user/" class="mt-4">
+                        {% csrf_token %}
+                        <fieldset>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Имя</label>
+                                <input type="text"
+                                       id="name"
+                                       class="form-control"
+                                       name="name"
+                                       placeholder="Введите имя"
+                                       required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="lastname" class="form-label">Фамилия</label>
+                                <input type="text"
+                                       id="lastname"
+                                       class="form-control"
+                                       name="lastname"
+                                       placeholder="Введите фамилию"
+                                       required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email"
+                                       id="email"
+                                       class="form-control"
+                                       name="email"
+                                       placeholder="Введите email"
+                                       required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Пароль</label>
+                                <input type="password"
+                                       id="password"
+                                       class="form-control"
+                                       name="password"
+                                       placeholder="Введите пароль"
+                                       required>
+                            </div>
+                        </fieldset>
+                        <div class="modal-footer">
+                            <button type="button"
+                                    class="btn btn-secondary text-black"
+                                    data-bs-dismiss="modal">Закрыть</button>
+                            <button type="submit" class="btn btn-primary text-black">Зарегистрироваться</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Delete Modal -->
+    <div class="modal" tabindex="-1" id="deleteConfirmModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Подтвердите удаление</h5>
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Вы уверены, что хотите удалить эту запись?</p>
+                    <input type="hidden" id="deleteEmail">
+                </div>
+                <div class="modal-footer">
+                    <button type="button"
+                            class="btn btn-secondary text-black"
+                            data-bs-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-danger text-black" id="confirmDelete">Удалить</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-{% include "main/includes/header.html" %}
+
+    <!-- Edit Modal -->
+    <div class="modal" tabindex="-1" id="editModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Редактировать запись</h5>
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="edit/">
+                        {% csrf_token %}
+                        <input type="hidden" id="editingEmail">
+                        <div class="mb-3">
+                            <label for="editName" class="form-label">Имя</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="editName"
+                                   value="{{ user.name }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editLastname" class="form-label">Фамилия</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="editLastname"
+                                   value="{{ user.lastname }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editEmail" class="form-label">Email</label>
+                            <input type="email"
+                                   class="form-control"
+                                   id="editEmail"
+                                   value="{{ user.email }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editPassword" class="form-label">Пароль</label>
+                            <input type="password"
+                                   class="form-control"
+                                   id="editPassword"
+                                   value="{{ user.password }}">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button"
+                                    class="btn btn-secondary text-black"
+                                    data-bs-dismiss="modal">Закрыть</button>
+                            <button type="button" class="btn btn-primary text-black" id="saveEdit">Сохранить изменения</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+    
+    <nav class="contaiter mx-auto p-8 w-full flex flex-row items-center">
+        <div class="w-1/3">
+            <h1 class="font-bold text-xl text-white">Филиппова Екатерина ПИ21-7</h1>
+            <h2 class="text-white">Тема: "t-7"</h2>
+        </div>
+        <div class="w-2/3"></div>
+        <div class="btn-container w-1/5 flex flex-row justify-items-end text-center">
+            <!-- Button trigger modal -->
+            <button class="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#reg-modal">Регистрация</button>
+        </div>
+    </nav>
+    <div class="container mx-auto p-8">
+        <legend class="text-center"></legend>
+        <div>
+            <h2 class="mt-4 mb-4 d-flex flex-column justify-content-center align-items-center text-white text-xl">
+                Таблица пользователей
+            </h2>
+            <table class="table" id="userTable">
+                <thead>
+                    <tr>
+                        <th scope="col">Имя</th>
+                        <th scope="col">Фамилия</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Редактирование</th>
+                        <th scope="col">Удаление</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <th>{{ user.name }}</th>
+                            <th>{{ user.lastname }}</th>
+                            <th>{{ user.email }}</th>
+                            <th>
+                                <a href="edit/{{ user.id }}"
+                                   class="btn btn-success"
+                                   data-bs-toggle="modal"
+                                   data-bs-target="#editModal">Изменить</a>
+                            </th>
+                            <th>
+                                <a href="delete/{{ user.id }}"class="btn btn-danger">Удалить</a>
+                            </th>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

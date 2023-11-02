@@ -34,6 +34,50 @@
   <body>
     {% block content %}{% endblock %}
     <script src="{% static "js/dist/app.js" %}" charset="utf-8"></script>
+
+    <script>
+      document.querySelector('.edit-btn').addEventListener('click', function() {
+          const userId = this.getAttribute('data-user-id');
+          const name = document.querySelector('#editName').value;
+          const lastname = document.querySelector('#editLastname').value;
+          const email = document.querySelector('#editEmail').value;
+  
+          console.log('userId:', userId);
+          console.log('name:', name);
+          console.log('lastname:', lastname);
+          console.log('email:', email);
+      
+          // Создайте объект FormData, чтобы упростить отправку данных формы
+          const formData = new FormData();
+          formData.append('editingEmail', name);
+          formData.append('editName', name);
+          formData.append('editLastname', lastname);
+          formData.append('editEmail', email);
+      
+          // Отправьте данные на сервер через POST-запрос
+          fetch(`/edit_user/${userId}/`, {
+              method: 'POST',
+              headers: {
+                  'X-CSRFToken': document.querySelector('input[name=csrfmiddlewaretoken]').value
+              },
+              body: formData // Отправляем объект FormData с данными формы
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.success) {
+                  // Закройте модальное окно
+                  $('#editModal').modal('hide');
+                  // Обновите страницу или выполните другие действия при успешном редактировании
+              } else {
+                  // Выведите сообщение об ошибке, если не удалось сохранить изменения
+                  alert('Ошибка при сохранении изменений.');
+              }
+          });
+      });
+      
+  </script>
+
+
   </body>
 
 

@@ -5,69 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport"
           content="width=device-width" />
-    <title>Финансовый университет</title>
-    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css">
-    <link rel="stylesheet" href="styles.css">
-    
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
-    <script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
-
-
-    <!-- Styles for DataTables Buttons -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.0/css/buttons.dataTables.min.css">
-
-    <!-- JS for DataTables Buttons and its features -->
-    <script src="https://cdn.datatables.net/buttons/2.2.0/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.2.0/js/buttons.html5.min.js"></script>
-
+    <title>{{ title }}</title>
     <link rel="stylesheet" href="{% sass_src "styles.scss" %}" type="text/css" media="all">
   </head>
   <body>
     {% block content %}{% endblock %}
     <script src="{% static "js/dist/app.js" %}" charset="utf-8"></script>
   </body>
-
-
-
-
-{% comment %} 
-<script>
-  $(document).ready(function() {
-
-  let userRecords = JSON.parse(localStorage.getItem('userRecords')) || [];
-  
-  const table = $('#userTable').DataTable({
-      data: userRecords,
-      columns: [
-          { data: 'name', title: 'Имя' },
-          { data: 'lastname', title: 'Фамилия' },
-          { data: 'email', title: 'Email' },
-          { title: 'Редактирование', defaultContent: '<button class="btn btn-success edit-button">Редактировать</button>' },
-          { title: 'Удаление', defaultContent: '<button class="btn btn-danger delete-button">Удалить</button>' }
-      ],
-      dom: 'Bfrtip',
-      buttons: [
-          {
-              extend: 'excelHtml5',
-              exportOptions: {
-                  rows: ':visible' 
-              }
-          }
-      ]
-    });
-  });
-
-</script> {% endcomment %}
-
-
 </html>
-

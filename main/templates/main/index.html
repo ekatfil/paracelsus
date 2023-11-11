@@ -107,11 +107,10 @@
                             aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="edit_user/">
+                    <form method="POST" action="edit/">
                         {% csrf_token %}
+                        <input type="hidden" id="editingEmail">
                         <div class="mb-3">
-                            <input type="hidden" id="editingEmail" name="editingEmail" value="">
-
                             <label for="editName" class="form-label">Имя</label>
                             <input type="text"
                                    class="form-control"
@@ -132,6 +131,13 @@
                                    id="editEmail"
                                    value="{{ user.email }}">
                         </div>
+                        <div class="mb-3">
+                            <label for="editPassword" class="form-label">Пароль</label>
+                            <input type="password"
+                                   class="form-control"
+                                   id="editPassword"
+                                   value="{{ user.password }}">
+                        </div>
                         <div class="modal-footer">
                             <button type="button"
                                     class="btn btn-secondary text-black"
@@ -149,7 +155,7 @@
     <nav class="contaiter mx-auto p-8 w-full flex flex-row items-center">
         <div class="w-1/3">
             <h1 class="font-bold text-xl text-white">Филиппова Екатерина ПИ21-7</h1>
-            <h2 class="text-white">Тема: "t-8 (Сохранение в БД)"</h2>
+            <h2 class="text-white">Тема: "t-7"</h2>
         </div>
         <div class="w-2/3"></div>
         <div class="btn-container w-1/5 flex flex-row justify-items-end text-center">
@@ -182,11 +188,10 @@
                             <th>{{ user.lastname }}</th>
                             <th>{{ user.email }}</th>
                             <th>
-                                <a href="edit_user/{{ user.id }}"
-                                   class="btn btn-success edit-btn"
+                                <a href="edit/{{ user.id }}"
+                                   class="btn btn-success"
                                    data-bs-toggle="modal"
-                                   data-bs-target="#editModal"
-                                   data-user-id="{{ user.id }}">Изменить</a>
+                                   data-bs-target="#editModal">Изменить</a>
                             </th>
                             <th>
                                 <a href="delete/{{ user.id }}"class="btn btn-danger">Удалить</a>
@@ -198,5 +203,3 @@
         </div>
     </div>
 {% endblock %}
-
-

@@ -1,0 +1,33 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+{% include "main/includes/header.html" %}
+
+<div class="py-48 px-4 my-auto">
+    <div class="flex w-full flex-col p-4 bg-white/70 border-2 border-white rounded-3xl">
+        <div class="w-full flex-col place-items-center justify-center text-center">
+            <h2 class="text-xl uppercase mb-6">ВХОД</h2>
+            <div class="space-y-3.5 mb-10">
+                <input type="email" placeholder="Email" class="reg-input w-full rounded-full py-1 px-4">
+                <input type="password" placeholder="Пароль" class="reg-input w-full rounded-full py-1 px-4">
+            </div>
+            <div class="w-full mx-auto justify-center place-items-center text-center space-y-3.5">
+                <button class="reg-btn text-white px-4 py-2 rounded-md drop-shadow-md font-medium">Войти</button>
+                <div class="flex flex-row place-items-center justify-center">
+                    <p class="me-2">Забыли пароль?</p>
+                    <a href="#">Восстановить</a>
+                </div>
+                <div class="flex flex-row place-items-center justify-center">
+                    <p class="me-2">Еще нет аккаунта?</p>
+                    <a href="{% url "main:registration" %}">Зарегистрироваться</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

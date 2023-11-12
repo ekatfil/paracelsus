@@ -8,3 +8,15 @@ def index(request):
         "title": "Paracelsus",
     }
     return render(request, "main/index.html", content)
+
+def registration(request):
+    content = {
+        "title": "Регистрация",
+    }
+    return render(request, "main/registration.html", content)
+
+def login(request):
+    content = {
+        "title": "Вход",
+    }
+    return render(request, "main/login.html", content)

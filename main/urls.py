@@ -6,4 +6,6 @@ app_name = "main"
 
 urlpatterns = [
     path("", main.index, name="index"),
+    path("/registration", main.registration, name="registration"),
+    path("/login", main.login, name="login"),
 ]

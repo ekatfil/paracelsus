@@ -9288,7 +9288,37 @@ textarea.form-control-lg {
 .red {
   background-color: red; }
 
-html {
-  background-color: aqua; }
+body {
+  background-color: #BFDBD6; }
+
+.title {
+  font-size: 1.625rem;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  letter-spacing: 0.2275rem; }
+
+.sub-text {
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 116.688%; }
+
+.join-btn {
+  background-color: #002245;
+  border-radius: 0.625rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: capitalize; }
+
+.reg-input {
+  border: 1px solid #C1D8ED; }
+
+.reg-btn {
+  background-color: #758481;
+  border-radius: 0.625rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: capitalize; }
 
 /*# sourceMappingURL=styles.css.map */

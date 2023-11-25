@@ -1,16 +1,23 @@
-{% load static %}{% load sass_tags %}
+{% load static %}
+{% load sass_tags %}
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport"
-          content="width=device-width" />
+    <meta name="viewport" content="width=device-width" />
     <title>{{ title }}</title>
-    <link rel="stylesheet" href="{% sass_src "styles.scss" %}" type="text/css" media="all">
+    <link rel="stylesheet"
+          href="{% sass_src "styles.scss" %}"
+          type="text/css"
+          media="all">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{% static "js/calendar.js" %}" charset="utf-8"></script>
+    <script src="{% static "js/dropdown.js" %}" charset="utf-8"></script>
+    <script src="{% static "js/modal.js" %}" charset="utf-8"></script>
   </head>
   <body>
+    {% include "main/includes/header.html" %}
+    {% include "main/includes/modal-create-note.html" %}
     {% block content %}{% endblock %}
-    <script src="{% static "js/dist/app.js" %}" charset="utf-8"></script>
   </body>
 </html>

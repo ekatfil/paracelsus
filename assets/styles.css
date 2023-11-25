@@ -9291,6 +9291,9 @@ textarea.form-control-lg {
 body {
   background-color: #BFDBD6; }
 
+html {
+  background-color: #BFDBD6; }
+
 .title {
   font-size: 1.625rem;
   font-style: normal;
@@ -9320,5 +9323,8 @@ body {
   font-size: 1rem;
   font-weight: 500;
   text-transform: capitalize; }
+
+.note-modal {
+  margin-top: 64vh; }
 
 /*# sourceMappingURL=styles.css.map */

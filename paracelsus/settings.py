@@ -328,16 +328,16 @@ home = str(Path.home())
 #     EMAIL_HOST_PASSWORD = email_settings["EMAIL_HOST_PASSWORD"]
 
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_USE_SSL = True
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_USE_SSL = True
 
-TELEGRAM_BOT_API_KEY = "6120471530:AAFZo0JZTJ7wOo3sugkbi33LUfBvWMPyT9w"
-TELEGRAM_PASSWORD_ADMIN = "12345678"
-
-from .local_settings import *
-
-if "installed_server_apps" in locals():
-    INSTALLED_APPS += installed_server_apps
-
-if "server_middleware" in locals():
-    MIDDLEWARE += server_middleware
+# TELEGRAM_BOT_API_KEY = "6120471530:AAFZo0JZTJ7wOo3sugkbi33LUfBvWMPyT9w"
+# TELEGRAM_PASSWORD_ADMIN = "12345678"
+#
+# from .local_settings import *
+#
+# if "installed_server_apps" in locals():
+#     INSTALLED_APPS += installed_server_apps
+#
+# if "server_middleware" in locals():
+#     MIDDLEWARE += server_middleware

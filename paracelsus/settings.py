@@ -317,6 +317,8 @@ DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
 
 
 home = str(Path.home())
+
+LOGIN_URL = "main/login"
 # import pdb; pdb.set_trace()
 # with open(os.path.join('/', 'home', 'popov', 'send_mail_secret.json'), 'r') as f:
 # with open(os.path.join(home, "send_mail_secret.json"), "r") as f:

@@ -1,6 +1,6 @@
 {% extends "main/base.html" %}
 {% load static %}
-
+{% load widget_tweaks %}
 
 {% block content %}
 
@@ -9,20 +9,30 @@
     <div class="flex w-full flex-col p-4 bg-white/70 border-2 border-white rounded-3xl">
         <div class="w-full flex-col place-items-center justify-center text-center">
             <h2 class="text-xl uppercase mb-6">РЕГИСТРАЦИЯ</h2>
+            <form role="form" method="post">
+                {% csrf_token %}
             <div class="space-y-3.5 mb-10">
-                <input type="text" placeholder="Ваше имя" class="reg-input w-full rounded-full py-1 px-4">
-                <input type="tel" placeholder="Номер телефона" class="reg-input w-full rounded-full py-1 px-4">
-                <input type="email" placeholder="Email" class="reg-input w-full rounded-full py-1 px-4">
-                <input type="password" placeholder="Пароль" class="reg-input w-full rounded-full py-1 px-4">
-                <input type="password" placeholder="Повторите пароль" class="reg-input w-full rounded-full py-1 px-4">
+
+                 {% render_field form.username class="reg-input w-full rounded-full py-1 px-4" placeholder="Логин" type="text" %}
+                <span class="text-error">{{ form.username.errors }}</span>
+                {% render_field form.email class="reg-input w-full rounded-full py-1 px-4" placeholder="Email" type="email" %}
+                <span class="text-error">{{ form.email.errors }}</span>
+                {% render_field form.password1 class="reg-input w-full rounded-full py-1 px-4" placeholder="Пароль" type="password" %}
+                <span class="text-error">{{ form.password1.errors }}</span>
+                {% render_field form.password2 class="reg-input w-full rounded-full py-1 px-4" placeholder="Повторите пароль" type="password" %}
+                <span class="text-error">{{ form.password2.errors }}</span>
+
+
             </div>
             <div class="w-full mx-auto justify-center place-items-center text-center space-y-3.5">
                 <button class="reg-btn text-white px-4 py-2 rounded-md drop-shadow-md font-medium">Зарегистрироваться</button>
                 <div class="flex flex-row place-items-center justify-center">
                     <p class="me-2">Уже есть аккаунт?</p>
-                    <a href="{% url "main:login" %}">Войти</a>
+                    <a href="{% url 'main:login' %}">Войти</a>
                 </div>
+
             </div>
+            </form>
         </div>
     </div>
 </div>

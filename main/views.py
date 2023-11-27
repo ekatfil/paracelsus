@@ -14,31 +14,10 @@ def index(request):
 
 
 def registration(request):
+    msg = None
     content = {
         "title": "Регистрация",
     }
-    return render(request, "main/registration.html", content)
-
-
-def login(request):
-    content = {
-        "title": "Вход",
-    }
-    return render(request, "main/login.html", content)
-
-
-def user_calendar(request):
-    content = {
-        "title": "Календарь",
-    }
-    return render(request, "main/user-calendar.html", content)
-
-
-# Пока не разобрались с ошибкой (если я не написала про неё, сигналь), сделала свои вьюшки, а там их отредачим
-
-def register_user(request):
-
-    msg = None
 
     if request.method == "POST":
 
@@ -50,6 +29,7 @@ def register_user(request):
             form.save()
 
             msg = 'User created successfully.'
+            return redirect('../login')
 
         else:
             msg = 'Form is not valid'
@@ -57,18 +37,24 @@ def register_user(request):
     else:
         form = SignUpForm()
 
-    return render(request, "main/register.html", {"form": form, "msg" : msg })
+    content["form"] = form
+    content["msg"] = msg
+
+    return render(request, "main/registration.html", content)
 
 
-def betalogin(request):
-
+def login(request):
+    content = {
+        "title": "Вход",
+    }
     if request.method == "GET":
         form = LoginForm()
-        return render(request, "main/betalogin.html", {"form": form})
+        content["form"] = form
+        return render(request, "main/login.html", content)
 
-    elif request.method == 'POST':
+    elif request.method == "POST":
         form = LoginForm(request.POST)
-
+        content["form"] = form
         if form.is_valid():
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
@@ -76,10 +62,25 @@ def betalogin(request):
             if user:
                 dj_login(request, user)
                 messages.success(request, f"Hi {username.title()}, welcome back!")
-                return redirect("main/testlogin")
+                return redirect("../user/calendar")
 
         messages.error(request, f"Invalid username or password")
-        return render(request, "main/betalogin.html", {"form": form})
+    return render(request, "main/login.html", content)
+
+
+# @login_required(login_url="main/login")
+def user_calendar(request):
+    content = {
+        "title": "Календарь",
+    }
+    if request.user.is_authenticated:
+        print(request.user)
+        return render(request, "main/user-calendar.html", content)
+    else:
+        return redirect('../../login')
+
+
+# Пока не разобрались с ошибкой (если я не написала про неё, сигналь), сделала свои вьюшки, а там их отредачим
 
 
 @login_required

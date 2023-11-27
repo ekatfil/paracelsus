@@ -93,4 +93,4 @@ local_settings.py
 .idea/
 *migrations*
 *media/*
-db.sqlite3
+assets/node_modules

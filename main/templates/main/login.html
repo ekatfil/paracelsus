@@ -1,6 +1,6 @@
 {% extends "main/base.html" %}
 {% load static %}
-
+{% load widget_tweaks %}
 
 {% block content %}
 
@@ -8,21 +8,27 @@
     <div class="flex w-full flex-col p-4 bg-white/70 border-2 border-white rounded-3xl">
         <div class="w-full flex-col place-items-center justify-center text-center">
             <h2 class="text-xl uppercase mb-6">ВХОД</h2>
+            <form role="form" method="post">
+                {% csrf_token %}
             <div class="space-y-3.5 mb-10">
-                <input type="email" placeholder="Email" class="reg-input w-full rounded-full py-1 px-4">
-                <input type="password" placeholder="Пароль" class="reg-input w-full rounded-full py-1 px-4">
+<!--                <input type="email" placeholder="Email" class="reg-input w-full rounded-full py-1 px-4">-->
+<!--                <input type="password" placeholder="Пароль" class="reg-input w-full rounded-full py-1 px-4">-->
+                {% render_field form.username class="reg-input w-full rounded-full py-1 px-4" placeholder="Логин" type="text" %}
+                {% render_field form.password class="reg-input w-full rounded-full py-1 px-4" placeholder="Пароль" type="password" %}
+
             </div>
             <div class="w-full mx-auto justify-center place-items-center text-center space-y-3.5">
-                <a href="{% url "main:user_calendar" %}" class="reg-btn text-white px-4 py-2 rounded-md drop-shadow-md font-medium">Войти</a>
+                <button class="reg-btn text-white px-4 py-2 rounded-md drop-shadow-md font-medium">Войти</button>
                 <div class="flex flex-row place-items-center justify-center">
                     <p class="me-2">Забыли пароль?</p>
                     <a href="#">Восстановить</a>
                 </div>
                 <div class="flex flex-row place-items-center justify-center">
                     <p class="me-2">Еще нет аккаунта?</p>
-                    <a href="{% url "main:registration" %}">Зарегистрироваться</a>
+                    <a href="{% url 'main:registration' %}">Зарегистрироваться</a>
                 </div>
             </div>
+            </form>
         </div>
     </div>
 </div>

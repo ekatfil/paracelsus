@@ -10,14 +10,25 @@
           type="text/css"
           media="all">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
     <script src="{% static 'js/calendar.js' %}" charset="utf-8"></script>
     <script src="{% static 'js/dropdown.js' %}" charset="utf-8"></script>
     <script src="{% static 'js/modal.js' %}" charset="utf-8"></script>
+    <script>
+      $(document).ready(function () {
+        $('#myDataTable').DataTable();
+      });
+    </script>
+    
   </head>
   <body>
     {% include "main/includes/header.html" %}
     {% include "main/includes/modal-create-note.html" %}
     {% include "main/includes/modal-user-notes.html" %}
+    
     {% block content %}{% endblock %}
     
   </body>

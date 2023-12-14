@@ -104,3 +104,17 @@ def testlogin(request):
             'user_form': user_form,
             'page_form': page_form
         })
+
+def profile(request):
+    content = {
+        "title": "Paracelsus",
+    }
+    return render(request, "main/profile-doctor.html", content)
+
+def patients(request):
+    content = {
+        "title": "Paracelsus",
+    }
+    return render(request, "main/patients-doctor.html", content)
+
+

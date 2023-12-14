@@ -1,0 +1,50 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="doctor-nav">
+    <div class="container p-2 space-x-8 mx-auto flex flex-row place-content-center">
+        <a href="#" class="doctor-nav-item p-2 font-bold">Профиль</a>
+        <a href="{% url "main:patients" %}" class="doctor-nav-item p-2">Пациенты</a>
+        <div class="h-8 w-8">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square w-full h-full" viewBox="0 0 16 16">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+            </svg>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="profile-photo flex place-content-center my-10">
+        <img alt="user photo" class="w-48 h-48 rounded-full object-cover" src="{% static "img/profile-photo-doctor.jpg" %}">
+    </div>
+    <div class="user-name flex flex-col space-y-2 text-center place-content-center">
+        <p class="font-bold text-lg">Краснов Борис Михайлович</p>
+        <p class="">врач-гастроэнтеролог</p>
+    </div>
+
+    <div class="py-10">
+            <b>Диплом об образовании</b>
+            <br>1993г. Смоленский государственный медицинский институт. «Педиатрия»
+            <br>
+            <br>- Член Российской ассоциации гастроэнтерологов
+            <br>- врач-эндоскопист
+            <br>- лечение и диагностика заболеваний желудочно-кишечного тракта в соответствии с новейшими методиками (гастрит, язва желудка, язва 12-перстной кишки, колит, панкреатит, заболевания печени)
+            <br>проводит эндоскопические исследования желудка (ЭГДС), толстого кишечника (колоноскопия) на современном оборудовании
+            <br>
+            <br><b>Специализация</b>
+            <br>- 1994. Интернатура в Вяземской ЦРБ Смоленской обл. «Педиатрия»
+            <br>- 2008г. Факультет повышения квалификации и профессиональной переподготовки ГОУ ВПО Смоленская гос.мед.академия «Эндоскопия»
+            <br>- 2010г. ГОУ ВПО РГМУ «Гастроэнтерология»
+            <br>
+            <br><b>Усовершенствование, Сертификат</b>
+            <br>- 2013г. ФГБУ ВПО Российский университет дружбы народов, «Эндоскопия»,144час.
+            <br>- 2015г. ИУВ ФГБУ «НМХЦ им.Н.И.Пирогова» Минздрава России. «Гастроэнтерология», 144 час.
+    </div>
+</div>
+    
+
+
+{% endblock %}

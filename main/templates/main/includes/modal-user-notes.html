@@ -1,0 +1,25 @@
+{% load static %}
+
+<!-- Add this modal structure at the end of your HTML body -->
+<div id="noteModal" class=" note-modal container modal hidden fixed inset-0 z-50 overflow-auto flex items-center justify-center">
+    <div class="modal-content bg-white w-full p-8 rounded-lg max-h-60 lg:max-h-auto overflow-y-auto">
+        <span class="close close-notes-modal text-gray-500 cursor-pointer absolute top-4 right-4 text-2xl">&times;</span>
+        <!-- Add form elements for selecting time, note type, and entering text -->
+        <div>
+            Заметки на день:
+        </div>
+
+
+        <div class="text-center my-4">
+            <button id="add-note">
+                <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70" fill="none">
+                <rect width="70" height="70" rx="35" fill="#687874" fill-opacity="0.9"/>
+                <rect x="33" y="51" width="32" height="4" rx="2" transform="rotate(-90 33 51)" fill="white"/>
+                <rect x="33" y="51" width="32" height="4" rx="2" transform="rotate(-90 33 51)" fill="white"/>
+                <rect x="19" y="33" width="32" height="4" rx="2" fill="white"/>
+                <rect x="19" y="33" width="32" height="4" rx="2" fill="white"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,9 +1,9 @@
 {% load static %}
 
 <!-- Add this modal structure at the end of your HTML body -->
-<div id="noteModal" class=" note-modal container modal hidden fixed inset-0 z-50 overflow-auto flex items-center justify-center">
-    <div class="modal-content bg-white w-full p-8 rounded-lg max-h-60 overflow-y-auto">
-        <span class="close text-gray-500 cursor-pointer absolute top-4 right-4 text-2xl">&times;</span>
+<div id="createnoteModal" class=" note-modal container modal hidden fixed inset-0 z-50 overflow-auto flex items-center justify-center">
+    <div class="modal-content bg-white w-full p-8 rounded-lg max-h-60 lg:max-h-auto overflow-y-auto">
+        <span class="close close-create-modal text-gray-500 cursor-pointer absolute top-4 right-4 text-2xl">&times;</span>
         <!-- Add form elements for selecting time, note type, and entering text -->
         <form id="noteForm">
             <!-- Example: Time selection -->
@@ -14,21 +14,21 @@
 
             <!-- Example: Note type selection -->
             <div class="mb-4">
-                <label for="noteType" class="block text-sm font-medium text-gray-700">Категория:</label>
+                <label for="noteType" class="block text-sm font-medium text-gray-700">Категория*:</label>
                 <select id="noteType" name="noteType" class="mt-1 p-2 border rounded-md w-full">
-                    <option value="meeting">Meeting</option>
-                    <option value="reminder">Reminder</option>
+                    <option value="private">Личное</option>
+                    <option value="available">Доступно врачу для просмотра</option>
                     <!-- Add other options as needed -->
                 </select>
             </div>
 
             <!-- Example: Text area for entering note -->
             <div class="mb-4">
-                <label for="noteText" class="block text-sm font-medium text-gray-700">Текст:</label>
+                <label for="noteText" class="block text-sm font-medium text-gray-700">Текст*:</label>
                 <textarea id="noteText" name="noteText" rows="4" class="mt-1 p-2 border rounded-md w-full"></textarea>
             </div>
 
-            <button type="submit" class="bg-blue-500 text-white p-2 rounded-md">Добавить</button>
+            <a id="save-note" class="save-note-btn text-white p-2 rounded-md">Добавить</a>
         </form>
     </div>
 </div>

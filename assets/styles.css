@@ -9281,13 +9281,6 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important; } }
 
-.rpk-container {
-  max-width: 1600px;
-  margin: auto; }
-
-.red {
-  background-color: red; }
-
 body {
   background-color: #BFDBD6; }
 
@@ -9324,7 +9317,18 @@ html {
   font-weight: 500;
   text-transform: capitalize; }
 
+.save-note-btn {
+  background-color: #758481;
+  border-radius: 0.625rem;
+  font-size: 1rem;
+  font-weight: 500; }
+
 .note-modal {
-  margin-top: 64vh; }
+  margin-top: 60%; }
+  @media screen and (max-width: 425px) {
+    .note-modal {
+      margin-top: 68vh; } }
+.visible {
+  display: block !important; }
 
 /*# sourceMappingURL=styles.css.map */

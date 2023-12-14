@@ -20,13 +20,6 @@ li {
 // @import 'node_modules/node_modules/bootstrap/scss/bootstrap';
 
 
-.rpk-container {
-  max-width: 1600px;
-  margin: auto;
-}
-.red {
-  background-color: red;
-}
 
 body {
   background-color: #BFDBD6;
@@ -71,6 +64,24 @@ html {
   text-transform: capitalize;
 }
 
-.note-modal {
-  margin-top: 64vh;
+
+.save-note-btn {
+  background-color: #758481;
+  border-radius: 0.625rem;
+  font-size: 1rem;
+  font-weight: 500;
 }
+
+.note-modal {
+  margin-top: 60%;
+
+  @media screen and (max-width: 425px) {
+    margin-top: 68vh;
+  }
+
+}
+
+.visible {
+  display: block !important;
+}
+

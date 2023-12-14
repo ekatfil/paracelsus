@@ -85,3 +85,9 @@ html {
   display: block !important;
 }
 
+.cell {
+  &.today {
+  background-color: #C1D8ED;
+  }
+}
+

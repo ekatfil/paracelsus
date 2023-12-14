@@ -60,13 +60,20 @@ document.addEventListener("DOMContentLoaded", function () {
             row.classList.add("text-center", "h-12");
             for (let j = 0; j < 7; j++) {
                 const cell = document.createElement("td");
-                cell.classList.add("border", "p-1", "h-12", "xl:h-40", "xl:w-40", "lg:w-30", "md:w-30", "sm:w-20", "w-10", "overflow-auto", "transition", "cursor-pointer", "duration-500", "ease", "hover:bg-gray-300");
+                cell.classList.add("border", "p-1", "h-12", "xl:h-40", "xl:w-40", "lg:w-30", "md:w-30", "sm:w-20", "w-10", "overflow-auto", "transition", "cursor-pointer", "duration-500", "ease", "hover:bg-gray-300", "cell");
 
                 if (date <= 0 || date > new Date(year, month + 1, 0).getDate()) {
                     // Заполняем пустые ячейки до начала месяца и после его окончания 
                     cell.textContent = "";
                 } else {
                     cell.textContent = date;
+
+                    // Проверяем, является ли текущая ячейка сегодняшней датой
+                    const today = new Date();
+                    if (date === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
+                        // Добавляем стиль или элемент, обозначающий сегодняшнюю дату
+                        cell.classList.add("today");
+                    }
                 }
                 date++;
                 row.appendChild(cell);

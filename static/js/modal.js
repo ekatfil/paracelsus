@@ -39,6 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const saveNoteBtn = document.getElementById("save-note");
     const createGroupBtn = document.getElementById("create-group");
     const calendarTable = document.getElementById("calendarTable");
+    const chooseModal = document.getElementById("chooseModal");
+    const notes = document.getElementById("notes");
     const closeCreateNoteModalBtn = createnoteModal.querySelector(".close-create-modal");
 
     calendarTable.addEventListener("click", function (event) {
@@ -79,9 +81,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                     if (item.time)
-                        html_text += "<div class=\"flex flex-row w-full mb-2 items-center justify-center\"><p class=\"w-1/3\">" + item.time + "</p><div class=\"" + category + " w-2/3 p-2 text-white\">" + item.name + "</div></div>";
+                        html_text += "<div class=\"flex flex-row w-full mb-2 items-center justify-center\"><p class=\"w-1/3\">" + item.time + "</p><div value=\"" + item.id + "\" class=\"" + category + " w-2/3 p-2 text-white notes\">" + item.name + "</div></div>";
                     else
-                        html_text += "<div class=\"flex flex-row w-full mb-2 items-center justify-center\"><p class=\"w-1/3\"></p><div class=\"" + category + " w-2/3 p-2 text-white\">" + item.name + "</div></div>"
+                        html_text += "<div class=\"flex flex-row w-full mb-2 items-center justify-center\"><p class=\"w-1/3\"></p><div value=\"" + item.id + "\" class=\"" + category + " w-2/3 p-2 text-white notes\">" + item.name + "</div></div>"
                 });
 
                 div.classList.add("flex", "flex-wrap", "w-full", "items-center", "justify-center");
@@ -93,6 +95,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             noteModal.classList.add("visible");
+        }
+    });
+
+    notes.addEventListener("click", function () {
+        const clickedElement = event.target;
+        console.log(clickedElement);
+        var id = clickedElement.getAttribute("value");
+        console.log(id);
+        noteModal.classList.remove("visible");
+        chooseModal.classList.add("visible");
+        if (clickedElement.classList.contains("notes")){
+            console.log("WWW");
+            $.post('/api/get-appointment-details/' + id + '/', function (data) {
+                const data_div = document.getElementById('data-date');
+                data_div.setAttribute("data-category", data.category);
+                data_div.setAttribute("data-id", id);
+                data_div.setAttribute("data-time", data.time)
+                data_div.setAttribute("data-text", data.name)
+            });
         }
     });
 

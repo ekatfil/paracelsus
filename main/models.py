@@ -46,7 +46,7 @@ class Page(models.Model):
         null=True,
         blank=True
     ) 
-    pfp = models.ImageField(upload_to='static/img')
+    pfp = models.ImageField(upload_to='static/img', blank=True, null=True)
     is_doctor = models.BooleanField(default=False)
     profession = models.CharField(max_length=155, blank=True, null=True)
     education = models.TextField(blank=True, null=True)

@@ -19,10 +19,10 @@
             </div>
             <div class="w-full mx-auto justify-center place-items-center text-center space-y-3.5">
                 <button class="reg-btn text-white px-4 py-2 rounded-md drop-shadow-md font-medium">Войти</button>
-                <div class="flex flex-row place-items-center justify-center">
+                {% comment %} <div class="flex flex-row place-items-center justify-center">
                     <p class="me-2">Забыли пароль?</p>
                     <a href="#">Восстановить</a>
-                </div>
+                </div> {% endcomment %}
                 <div class="flex flex-row place-items-center justify-center">
                     <p class="me-2">Еще нет аккаунта?</p>
                     <a href="{% url 'main:registration' %}">Зарегистрироваться</a>

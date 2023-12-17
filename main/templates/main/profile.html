@@ -28,15 +28,18 @@
         {% endif %}">
     </div>
     <div class="user-name flex flex-col space-y-2 text-center place-content-center">
-        <p class="font-bold text-lg">{{ user.last_name }} {{ user.first_name }} {{ user.profile.patronymic}}</p>
-        <p class="">{{ user.profile.profession }}</p>
+        <p class="font-bold text-lg">
+            {% if user.profile.last_name %}{{ user.profile.last_name }}{% endif %} 
+            {{ user.profile.first_name }} 
+            {% if user.profile.patronymic %}{{ user.profile.patronymic }}{% endif %} </p>
+        <p class="">{% if user.profile.profession %}{{ user.profile.profession }}{% endif %}</p>
     </div>
 
     <div class="py-10">
             {% if user.profile.education %}
             {{ user.profile.education }}<br>
             {% endif %}
-            Дополнительная информация не указана
+            {% comment %} Дополнительная информация не указана {% endcomment %}
     </div>
 </div>
     

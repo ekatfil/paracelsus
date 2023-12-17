@@ -82,9 +82,15 @@ class Appointment(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
 
+    def __str__(self) -> str:
+        return f"{self.day} {self.user}"
+
 
 class GroupDoctor(models.Model):
     users = models.ManyToManyField(User, related_name="groups_doctor")
     title = models.CharField(max_length=155) 
+
+    def __str__(self) -> str:
+        return self.title
 
 

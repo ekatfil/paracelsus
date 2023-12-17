@@ -33,9 +33,11 @@ $.ajaxSetup({
 document.addEventListener("DOMContentLoaded", function () {
     const noteModal = document.getElementById("noteModal");
     const closeModalBtn = document.querySelector(".close-notes-modal");
+    const closeCreateGroupBtn = document.querySelector(".close-create-group-modal");
     const createnoteModal = document.getElementById("createnoteModal");
     const addNoteBtn = document.getElementById("add-note");
     const saveNoteBtn = document.getElementById("save-note");
+    const createGroupBtn = document.getElementById("create-group");
     const calendarTable = document.getElementById("calendarTable");
     const chooseModal = document.getElementById("chooseModal");
     const notes = document.getElementById("notes");
@@ -131,6 +133,14 @@ document.addEventListener("DOMContentLoaded", function () {
     closeCreateNoteModalBtn.addEventListener("click", function () {
         createnoteModal.classList.remove("visible");
         noteModal.classList.add("visible");
+    });
+
+    createGroupBtn.addEventListener("click", function () {
+        creategroupModal.classList.remove("visible");
+    });
+
+    closeCreateGroupBtn.addEventListener("click", function () {
+        creategroupModal.classList.remove("visible");
     });
 
     window.addEventListener("click", function (event) {

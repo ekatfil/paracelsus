@@ -159,7 +159,7 @@ def get_appointment(request):
         if pk_pacient:
             user = User.objects.get(pk=pk_pacient)
         appointments = Appointment.objects.filter(day=date, user=user)
-        data = [{"name": appointment.name, "time": appointment.time, "category": appointment.category} for appointment in appointments]
+        data = [{"name": appointment.name, "time": appointment.time, "category": appointment.category, "id": appointment.id} for appointment in appointments]
 
         return JsonResponse({"appointments": data}, status=200)
     return HttpResponseForbidden("Your not permission to visit this page")
@@ -171,7 +171,15 @@ def add_appointment(request):
         time = data.get('time')
         category = data.get('category')
         text = data.get('text')
-        if time:
+        id = data.get('id')
+        if id:
+            appointment = Appointment.objects.get(pk=id)
+            if time and time != "null":
+                appointment.time = time
+            appointment.category = category
+            appointment.name = text
+            appointment.save()
+        elif time:
             Appointment.objects.create(day=date, user=request.user, time=time, category=category, name=text)
         else:
             Appointment.objects.create(day=date, user=request.user, category=category, name=text)

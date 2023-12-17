@@ -22,7 +22,7 @@ function csrfSafeMethod(method) {
 }
 
 $.ajaxSetup({
-    beforeSend: function(xhr, settings) {
+    beforeSend: function (xhr, settings) {
         if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
             xhr.setRequestHeader("X-CSRFToken", csrftoken);
         }
@@ -46,47 +46,49 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log(date);
             var pacient_id = '';
             const pacient = document.getElementById('pacient_id');
-            if(pacient){
+            if (pacient) {
                 pacient_id = pacient.getAttribute("value");
             }
-            
-            let data = JSON.stringify({date: date, pacient_id: pacient_id});
-            
-            $.post('/api/get-appointment/',  data, function(data){
+
+            let data = JSON.stringify({ date: date, pacient_id: pacient_id });
+
+            $.post('/api/get-appointment/', data, function (data) {
                 let appointments = data.appointments;
                 console.log(appointments);
                 const select_date = document.getElementById("date");
                 const notes = document.getElementById("notes");
                 const data_date = document.getElementById("data-date");
                 data_date.setAttribute("data-date", date);
-                select_date.innerHTML = "Заметки на день: " + date;
+                select_date.innerHTML = "Заметки на " + date + ":";
 
                 while (notes.firstChild) {
                     notes.removeChild(notes.firstChild);
-                  }
+                }
 
                 var div = document.createElement("div");
 
                 var html_text = "";
-                
-                appointments.forEach(function(item, i, arr) {
+
+                appointments.forEach(function (item, i, arr) {
                     var category = "doctor-note";
-                    if (item.category == "Личное"){
+                    if (item.category == "Личное") {
                         category = "private-note"
                     }
-                    if(item.time)
-                        html_text += "<p class=\"w-1/3\">" + item.time + "</p><div class=\""+ category + " w-2/3 p-2 text-white\">" + item.name + "</div>";
-                    else 
-                        html_text += "<p class=\"w-1/3\"></p><div class=\"private-note w-2/3 p-2 text-white\">" + item.name + "</div>"
-                  });
 
-                div.setAttribute("class", "flex flex-row w-full");
+
+                    if (item.time)
+                        html_text += "<div class=\"flex flex-row w-full mb-2 items-center justify-center\"><p class=\"w-1/3\">" + item.time + "</p><div class=\"" + category + " w-2/3 p-2 text-white\">" + item.name + "</div></div>";
+                    else
+                        html_text += "<div class=\"flex flex-row w-full mb-2 items-center justify-center\"><p class=\"w-1/3\"></p><div class=\"" + category + " w-2/3 p-2 text-white\">" + item.name + "</div></div>"
+                });
+
+                div.classList.add("flex", "flex-wrap", "w-full", "items-center", "justify-center");
                 div.innerHTML = html_text;
                 console.log(div);
                 notes.appendChild(div);
 
             });
-            
+
 
             noteModal.classList.add("visible");
         }
@@ -103,7 +105,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     saveNoteBtn.addEventListener("click", function () {
         createnoteModal.classList.remove("visible");
-        noteModal.classList.add("visible");
     });
 
     closeCreateNoteModalBtn.addEventListener("click", function () {
@@ -117,8 +118,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         if (event.target === createnoteModal) {
             createnoteModal.classList.remove("visible");
-            noteModal.classList.add("visible"); 
+            noteModal.classList.add("visible");
         }
     });
+
+    
 });
 

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import UserForm, PageForm, SignUpForm, LoginForm
+from .forms import UserForm, PageForm, SignUpForm, LoginForm, AppointmentForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as dj_login, authenticate
@@ -7,6 +7,9 @@ import json
 from django.http import HttpResponse, HttpResponseForbidden, JsonResponse
 from main.models import Appointment, GroupDoctor
 from django.contrib.auth.models import User
+from django.contrib.auth.views import LogoutView
+from django.shortcuts import render, get_object_or_404
+from django.forms import model_to_dict
 # Create your views here.
 
 
@@ -113,7 +116,13 @@ def profile(request):
     content = {
         "title": "Paracelsus",
     }
-    return render(request, "main/profile-doctor.html", content)
+
+    if request.user.is_authenticated:
+        print(request.user)
+        return render(request, "main/profile-doctor.html", content)
+    else:
+        return redirect('../../login')
+
 
 def patients(request):
     groups = GroupDoctor.objects.all()
@@ -170,3 +179,36 @@ def add_appointment(request):
         return JsonResponse({"created": "sucsuss"}, status=200)
     return HttpResponseForbidden("Your not permission to visit this page")
 
+
+def logout_view(request):
+    return LogoutView.as_view(next_page='/')(request)
+
+
+def get_appointment_details(request, appointment_id):
+    appointment = get_object_or_404(Appointment, pk=appointment_id, user=request.user)
+    data = model_to_dict(appointment)
+    return JsonResponse(data, status=200)
+
+
+def update_appointment(request, appointment_id):
+    appointment = get_object_or_404(Appointment, pk=appointment_id, user=request.user)
+
+    if request.method == "POST":
+        form = AppointmentForm(request.POST, instance=appointment)
+        if form.is_valid():
+            form.save()
+            return JsonResponse({"updated": "success"}, status=200)
+        else:
+            return JsonResponse({"error": "Invalid form data"}, status=400)
+
+    return JsonResponse({"error": "Invalid method"}, status=400)
+
+
+def delete_appointment(request, appointment_id):
+    appointment = get_object_or_404(Appointment, pk=appointment_id, user=request.user)
+
+    if request.method == "POST":
+        appointment.delete()
+        return JsonResponse({"deleted": "success"}, status=200)
+
+    return JsonResponse({"error": "Invalid method"}, status=400)

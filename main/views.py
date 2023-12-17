@@ -158,6 +158,7 @@ def get_appointment(request):
         user = request.user
         if pk_pacient:
             user = User.objects.get(pk=pk_pacient)
+            appointments = Appointment.objects.filter(day=date, user=user, category="Доступно врачу для просмотра")
         appointments = Appointment.objects.filter(day=date, user=user)
         data = [{"name": appointment.name, "time": appointment.time, "category": appointment.category, "id": appointment.id} for appointment in appointments]
 

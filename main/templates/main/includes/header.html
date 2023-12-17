@@ -10,8 +10,8 @@
         <span class="sr-only">Open user menu</span>
         <a href="{% url "main:profile" %}">
           <img class="w-12 h-12 rounded-full object-cover bg-white"
-          src="{% if user.profile.url %}
-          {{ user.profile.url }}
+          src="{% if user.profile.pfp.url %}
+          {{ user.profile.pfp.url }}
           {% else %}
           {% static 'img/default-profile.png' %}
           {% endif %}"

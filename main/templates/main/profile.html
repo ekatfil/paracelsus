@@ -21,16 +21,16 @@
 <div class="container">
     <div class="profile-photo flex place-content-center my-10">
         <img alt="user photo" class="w-48 h-48 rounded-full object-cover" 
-        src="{% if user.profile.url %}
-        {{ user.profile.url }}
+        src="{% if user.profile.pfp.url %}
+        {{ user.profile.pfp.url }}
         {% else %}
         {% static 'img/default-profile.png' %}
         {% endif %}">
     </div>
     <div class="user-name flex flex-col space-y-2 text-center place-content-center">
         <p class="font-bold text-lg">
-            {% if user.profile.last_name %}{{ user.profile.last_name }}{% endif %} 
-            {{ user.profile.first_name }} 
+            {% if user.last_name %}{{ user.last_name }}{% endif %} 
+            {{ user.first_name }} 
             {% if user.profile.patronymic %}{{ user.profile.patronymic }}{% endif %} </p>
         <p class="">{% if user.profile.profession %}{{ user.profile.profession }}{% endif %}</p>
     </div>

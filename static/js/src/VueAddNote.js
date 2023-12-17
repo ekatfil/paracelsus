@@ -50,7 +50,7 @@ if (document.getElementById("vue-add-note")) {
                         console.log(err);
                         
                     })
-                removeAll();
+                this.removeAll();
                 
             },
             deleteNote(){

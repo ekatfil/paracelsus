@@ -10,7 +10,5 @@
     "main": [
       "app.js"
     ]
-  },
-  "error": "ModuleNotFoundError",
-  "message": "Module not found: Error: Can't resolve './VueEditNote.js' in '/home/ekatfil/paracelsus/static/js/src'\nDid you miss the leading dot in 'resolve.extensions'? Did you mean '[\".*\",\".js\",\".vue\",\".json\"]' instead of '[\"*\",\".js\",\".vue\",\".json\"]'?"
+  }
 }

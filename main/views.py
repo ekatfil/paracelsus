@@ -119,7 +119,7 @@ def profile(request):
 
     if request.user.is_authenticated:
         print(request.user)
-        return render(request, "main/profile-doctor.html", content)
+        return render(request, "main/profile.html", content)
     else:
         return redirect('../../login')
 

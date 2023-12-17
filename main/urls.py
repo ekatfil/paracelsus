@@ -14,5 +14,7 @@ urlpatterns = [
     path("profile/", main.profile, name="profile"),
     path("profile/patients", main.patients, name="patients"),
     path('api/get-appointment/', main.get_appointment),
-    path('api/add-appointment/', main.add_appointment)
+    path('api/add-appointment/', main.add_appointment),
+    path('group/<int:pk_group>', main.patients_in_group, name="group"),
+    path('calendar/<int:pk_user>/', main.calendar_user, name='calendar')
 ]

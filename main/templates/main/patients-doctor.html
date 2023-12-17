@@ -5,7 +5,7 @@
 
 <div class="doctor-nav">
     <div class="container p-2 space-x-8 mx-auto flex flex-row place-content-center">
-        <a href="{% url "main:profile" %}" class="doctor-nav-item p-2">Профиль</a>
+        <a href="{% url 'main:profile' %}" class="doctor-nav-item p-2">Профиль</a>
         <a href="#" class="doctor-nav-item p-2 font-bold">Пациенты</a>
     </div>
 </div>
@@ -23,18 +23,12 @@
           </tr>
         </thead>
         <tbody>
+        {% for group in groups %}
           <tr>
-            <td>1</td>
-            <td>Диабет</td>
+            <td>{{ forloop.counter }}</td>
+            <td><a href="{% url 'main:group' group.id %}" >{{ group.title }}</a></td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td>Пневмания</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>ОРВ</td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
       

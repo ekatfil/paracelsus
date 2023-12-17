@@ -44,9 +44,15 @@ document.addEventListener("DOMContentLoaded", function () {
         if (clickedElement.tagName === "TD") {
             let date = clickedElement.getAttribute("value");
             console.log(date);
+            var pacient_id = '';
+            const pacient = document.getElementById('pacient_id');
+            if(pacient){
+                pacient_id = pacient.getAttribute("value");
+            }
             
+            let data = JSON.stringify({date: date, pacient_id: pacient_id});
             
-            $.post('/api/get-appointment/',  JSON.stringify({date: date}), function(data){
+            $.post('/api/get-appointment/',  data, function(data){
                 let appointments = data.appointments;
                 console.log(appointments);
                 const select_date = document.getElementById("date");

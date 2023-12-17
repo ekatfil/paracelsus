@@ -1,0 +1,29 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="py-10">
+    <table id="myDataTable" class="display">
+        <thead>
+          <tr>
+            <th>ФИО</th>
+            <th>email</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+          <tr>
+            <td><a href="{% url 'main:calendar' user.id %}">{{ user.last_name }} {{ user.first_name }} {{ user.profile.patronymic }}</a></td>
+            <td>{{ user.email }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      
+</div>
+    
+
+
+{% endblock %}

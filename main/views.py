@@ -5,7 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as dj_login, authenticate
 import json
 from django.http import HttpResponse, HttpResponseForbidden, JsonResponse
-from main.models import Appointment
+from main.models import Appointment, GroupDoctor
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -115,17 +116,40 @@ def profile(request):
     return render(request, "main/profile-doctor.html", content)
 
 def patients(request):
+    groups = GroupDoctor.objects.all()
     content = {
         "title": "Paracelsus",
+        "groups": groups
     }
     return render(request, "main/patients-doctor.html", content)
 
+def patients_in_group(request, pk_group):
+    group = GroupDoctor.objects.get(pk=pk_group)
+    users = group.users.select_related().all()
+    context = {
+        "users": users,
+        "title": "Пользователи группы"
+    }
+    return render(request, "main/patients-in-group.html", context)
+
+def calendar_user(request, pk_user):
+    user = User.objects.get(pk=pk_user)
+    context = {
+        'pacient': user,
+        "title": "Календарь пользователя"
+    }
+
+    return render(request, "main/calendar-pacient.html", context)
 
 def get_appointment(request):
     if request.method == "POST":
         data = json.loads(request.body)
         date = data.get('date')
-        appointments = Appointment.objects.filter(day=date, user=request.user)
+        pk_pacient = data.get('pacient_id')
+        user = request.user
+        if pk_pacient:
+            user = User.objects.get(pk=pk_pacient)
+        appointments = Appointment.objects.filter(day=date, user=user)
         data = [{"name": appointment.name, "time": appointment.time, "category": appointment.category} for appointment in appointments]
 
         return JsonResponse({"appointments": data}, status=200)

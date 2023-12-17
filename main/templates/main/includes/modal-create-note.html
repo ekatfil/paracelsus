@@ -6,23 +6,24 @@
         <form id="noteForm">
             <div class="mb-4">
                 <label for="time" class="block text-sm font-medium text-gray-700">Время:</label>
-                <input type="time" id="time" name="time" class="mt-1 p-2 border rounded-md w-full">
+                <input v-model="time" type="time" id="time" name="time" class="mt-1 p-2 border rounded-md w-full">
             </div>
 
             <div class="mb-4">
                 <label for="noteType" class="block text-sm font-medium text-gray-700">Категория*:</label>
-                <select id="noteType" name="noteType" class="mt-1 p-2 border rounded-md w-full">
-                    <option value="private">Личное</option>
-                    <option value="doctor">Доступно врачу для просмотра</option>
+                <select v-model="category" id="noteType" name="noteType" class="mt-1 p-2 border rounded-md w-full">
+                    <option value="Личное">Личное</option>
+                    <option value="Доступно врачу для просмотра">Доступно врачу для просмотра</option>
                 </select>
             </div>
 
             <div class="mb-4">
                 <label for="noteText" class="block text-sm font-medium text-gray-700">Текст*:</label>
-                <textarea id="noteText" name="noteText" rows="4" class="mt-1 p-2 border rounded-md w-full"></textarea>
+                <textarea v-model="text" id="noteText" name="noteText" rows="4" class="mt-1 p-2 border rounded-md w-full"></textarea>
             </div>
 
-            <a id="save-note" class="save-note-btn text-white p-2 rounded-md">Добавить</a>
+            <a id="save-note" class="save-note-btn text-white p-2 rounded-md" @click="addNote()">Добавить</a>
         </form>
     </div>
 </div>
+

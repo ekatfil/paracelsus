@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         // Добавляем стиль или элемент, обозначающий сегодняшнюю дату
                         cell.classList.add("today");
                     }
+                    cell.setAttribute("value", year + "-" + (month + 1) + "-" + date);
                 }
                 date++;
                 row.appendChild(cell);
@@ -93,5 +94,5 @@ document.addEventListener("DOMContentLoaded", function () {
         currentDate.setMonth(currentDate.getMonth() + 1);
         renderCalendar();
     });
-});
 
+});

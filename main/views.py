@@ -3,6 +3,9 @@ from .forms import UserForm, PageForm, SignUpForm, LoginForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login as dj_login, authenticate
+import json
+from django.http import HttpResponse, HttpResponseForbidden, JsonResponse
+from main.models import Appointment
 # Create your views here.
 
 
@@ -117,4 +120,29 @@ def patients(request):
     }
     return render(request, "main/patients-doctor.html", content)
 
+
+def get_appointment(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        date = data.get('date')
+        appointments = Appointment.objects.filter(day=date, user=request.user)
+        data = [{"name": appointment.name, "time": appointment.time, "category": appointment.category} for appointment in appointments]
+
+        return JsonResponse({"appointments": data}, status=200)
+    return HttpResponseForbidden("Your not permission to visit this page")
+
+def add_appointment(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        date = data.get('date')
+        time = data.get('time')
+        category = data.get('category')
+        text = data.get('text')
+        if time:
+            Appointment.objects.create(day=date, user=request.user, time=time, category=category, name=text)
+        else:
+            Appointment.objects.create(day=date, user=request.user, category=category, name=text)
+
+        return JsonResponse({"created": "sucsuss"}, status=200)
+    return HttpResponseForbidden("Your not permission to visit this page")
 

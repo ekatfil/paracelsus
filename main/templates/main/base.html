@@ -26,10 +26,14 @@
   </head>
   <body>
     {% include "main/includes/header.html" %}
+    <div id="vue-add-note">
     {% include "main/includes/modal-create-note.html" %}
     {% include "main/includes/modal-user-notes.html" %}
+    </div>
     
     {% block content %}{% endblock %}
-    
+   <script src="{% static 'js/dist/app.js' %}?v=1.01"
+                charset="utf-8"></script>  
   </body>
+  
 </html>

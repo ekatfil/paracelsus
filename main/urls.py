@@ -13,5 +13,6 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path("profile/", main.profile, name="profile"),
     path("profile/patients", main.patients, name="patients"),
-
+    path('api/get-appointment/', main.get_appointment),
+    path('api/add-appointment/', main.add_appointment)
 ]

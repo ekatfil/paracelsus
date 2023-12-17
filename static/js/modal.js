@@ -1,3 +1,35 @@
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+var csrftoken = getCookie('csrftoken');
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const noteModal = document.getElementById("noteModal");
     const closeModalBtn = document.querySelector(".close-notes-modal");
@@ -10,6 +42,46 @@ document.addEventListener("DOMContentLoaded", function () {
     calendarTable.addEventListener("click", function (event) {
         const clickedElement = event.target;
         if (clickedElement.tagName === "TD") {
+            let date = clickedElement.getAttribute("value");
+            console.log(date);
+            
+            
+            $.post('/api/get-appointment/',  JSON.stringify({date: date}), function(data){
+                let appointments = data.appointments;
+                console.log(appointments);
+                const select_date = document.getElementById("date");
+                const notes = document.getElementById("notes");
+                const data_date = document.getElementById("data-date");
+                data_date.setAttribute("data-date", date);
+                select_date.innerHTML = "Заметки на день: " + date;
+
+                while (notes.firstChild) {
+                    notes.removeChild(notes.firstChild);
+                  }
+
+                var div = document.createElement("div");
+
+                var html_text = "";
+                
+                appointments.forEach(function(item, i, arr) {
+                    var category = "doctor-note";
+                    if (item.category == "Личное"){
+                        category = "private-note"
+                    }
+                    if(item.time)
+                        html_text += "<p class=\"w-1/3\">" + item.time + "</p><div class=\""+ category + " w-2/3 p-2 text-white\">" + item.name + "</div>";
+                    else 
+                        html_text += "<p class=\"w-1/3\"></p><div class=\"private-note w-2/3 p-2 text-white\">" + item.name + "</div>"
+                  });
+
+                div.setAttribute("class", "flex flex-row w-full");
+                div.innerHTML = html_text;
+                console.log(div);
+                notes.appendChild(div);
+
+            });
+            
+
             noteModal.classList.add("visible");
         }
     });

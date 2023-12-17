@@ -47,12 +47,17 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.page.save()
 
-
+CATEGORY_APPOINTMENT = (
+    ("Личное", "Личное"),
+    ("Доступно врачу для просмотра", "Доступно врачу для просмотра")
+)
 class Appointment(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     day = models.DateField()
-    name = models.CharField(max_length=50)
+    time = models.TimeField(blank=True, null=True)
+    category = models.CharField(max_length=155, choices=CATEGORY_APPOINTMENT, default="Личное")
+    name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
 
 

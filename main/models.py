@@ -33,11 +33,13 @@ class Profile(models.Model):
 
 class Page(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    last_name = models.CharField(max_length=155, blank=True, null=True)
+    first_name = models.CharField(max_length=155)
+    patronymic = models.CharField(max_length=155, blank=True, null=True)
     birth_date = models.DateField(null=True, blank=True)
     pfp = models.ImageField(upload_to='static/img')
     is_doctor = models.BooleanField(default=False)
     profession = models.CharField(max_length=155, blank=True, null=True)
-    patronymic = models.CharField(max_length=155, blank=True, null=True)
     education = models.TextField(blank=True, null=True)
 
     def __str__(self) -> str:

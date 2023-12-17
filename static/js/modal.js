@@ -135,9 +135,9 @@ document.addEventListener("DOMContentLoaded", function () {
         noteModal.classList.add("visible");
     });
 
-    createGroupBtn.addEventListener("click", function () {
-        creategroupModal.classList.remove("visible");
-    });
+    // createGroupBtn.addEventListener("click", function () {
+    //     creategroupModal.classList.remove("visible");
+    // });
 
     closeCreateGroupBtn.addEventListener("click", function () {
         creategroupModal.classList.remove("visible");

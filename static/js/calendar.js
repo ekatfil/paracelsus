@@ -27,10 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
             "p-2",
             "border-r",
             "h-10",
-            "xl:w-40",
-            "lg:w-30",
-            "md:w-30",
-            "sm:w-20",
             "w-10",
             "xl:text-sm",
             "text-xs",
@@ -57,10 +53,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         for (let i = 0; i < 6; i++) {
             const row = document.createElement("tr");
-            row.classList.add("text-center", "h-12");
+            row.classList.add("text-center", "h-20");
             for (let j = 0; j < 7; j++) {
                 const cell = document.createElement("td");
-                cell.classList.add("border", "p-1", "h-12", "xl:h-40", "xl:w-40", "lg:w-30", "md:w-30", "sm:w-20", "w-10", "overflow-auto", "transition", "cursor-pointer", "duration-500", "ease", "hover:bg-gray-300", "cell");
+                cell.classList.add("border", "p-1", "h-20", "w-10", "overflow-auto", "transition", "cursor-pointer", "duration-500", "ease", "hover:bg-gray-300", "cell");
 
                 if (date <= 0 || date > new Date(year, month + 1, 0).getDate()) {
                     // Заполняем пустые ячейки до начала месяца и после его окончания 

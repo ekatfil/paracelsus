@@ -21,7 +21,7 @@
 <div class="container">
     <div class="profile-photo flex place-content-center my-10">
         <img alt="user photo" class="w-48 h-48 rounded-full object-cover" 
-        src="{% if user.profile.pfp.url %}
+        src="{% if user.profile.pfp %}
         {{ user.profile.pfp.url }}
         {% else %}
         {% static 'img/default-profile.png' %}

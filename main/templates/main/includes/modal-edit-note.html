@@ -1,7 +1,7 @@
 {% load static %}
 
 <div id="editNoteModal" class="edit-note-modal container modal hidden fixed inset-0 z-50 overflow-auto flex items-center justify-center">
-    <div class="modal-content bg-white w-full p-8 rounded-lg max-h-60 lg:max-h-auto overflow-y-auto">
+    <div class="modal-content bg-white w-1/2 p-8 rounded-lg min-h-72 lg:max-h-auto overflow-y-auto">
         <span class="close close-edit-modal text-gray-500 cursor-pointer absolute top-4 right-4 text-2xl">&times;</span>
         <form id="editNoteForm">
             <!-- Добавьте необходимые поля для редактирования заметки -->
@@ -14,7 +14,7 @@
                 <label for="editNoteType" class="block text-sm font-medium text-gray-700">Категория*:</label>
                 <select v-model="editingNote.category" id="editNoteType" name="editNoteType" class="mt-1 p-2 border rounded-md w-full">
                     <option value="Личное">Личное</option>
-                    <option value="Доступно врачу для просмотра">Доступно врачу для просмотра</option>
+                    <option value="Лекарства">Лекарства</option>
                 </select>
             </div>
 

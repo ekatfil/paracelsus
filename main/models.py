@@ -6,30 +6,29 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Profile(models.Model):
-    logo = models.FileField(upload_to="images/")
-    title = models.CharField(max_length=50)
-    full_title = models.CharField(max_length=250)
-    slogan = models.CharField(
+    """Основная информация"""
+
+    title = models.CharField("Заголовок сайта", max_length=50)
+
+    slogan = models.TextField(
+        "Слоган",
         max_length=100,
         null=True,
         blank=True,
     )
-    phone = models.TextField(
+
+    description = models.TextField(
+        "Описание",
+        max_length=700,
         null=True,
         blank=True,
     )
-    email = models.EmailField(
-        null=True,
-        blank=True,
-    )
+
+    img = models.FileField("Главная картинка")
 
     def __str__(self):
         return self.title
 
-    def get_phone(self):
-        if ";" in self.phone:
-            return self.phone.split(";")
-        return [self.phone]
 
 
 class Page(models.Model):
@@ -71,7 +70,7 @@ def save_user_profile(sender, instance, **kwargs):
 
 CATEGORY_APPOINTMENT = (
     ("Личное", "Личное"),
-    ("Доступно врачу для просмотра", "Доступно врачу для просмотра")
+    ("Лекарства", "Лекарства")
 )
 class Appointment(models.Model):
 

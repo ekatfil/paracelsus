@@ -10,12 +10,16 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import LogoutView
 from django.shortcuts import render, get_object_or_404
 from django.forms import model_to_dict
-# Create your views here.
+from main.models import *
+
 
 
 def index(request):
+    profile = Profile.objects.first()
+
     content = {
-        "title": "Paracelsus",
+        "title": "Главная",
+        "profile": profile,
     }
     return render(request, "main/index.html", content)
 
@@ -158,7 +162,7 @@ def get_appointment(request):
         user = request.user
         if pk_pacient:
             user = User.objects.get(pk=pk_pacient)
-            appointments = Appointment.objects.filter(day=date, user=user, category="Доступно врачу для просмотра")
+            appointments = Appointment.objects.filter(day=date, user=user, category="Лекарства")
         appointments = Appointment.objects.filter(day=date, user=user)
         data = [{"name": appointment.name, "time": appointment.time, "category": appointment.category, "id": appointment.id} for appointment in appointments]
 

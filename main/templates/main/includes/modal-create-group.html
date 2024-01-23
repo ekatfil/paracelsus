@@ -1,7 +1,7 @@
 {% load static %}
 
 <div id="creategroupModal" class="group-modal container modal hidden fixed inset-0 z-50 overflow-auto flex items-center justify-center">
-    <div class="modal-content bg-white w-full p-8 rounded-lg max-h-60 lg:max-h-auto overflow-y-auto">
+    <div class="modal-content bg-white w-1/2 p-8 rounded-lg min-h-72 lg:max-h-auto overflow-y-auto">
         <span class="close close-create-group-modal text-gray-500 cursor-pointer absolute top-4 right-4 text-2xl">&times;</span>
         <form id="noteForm">
             <div class="mb-4">
@@ -13,7 +13,7 @@
                 <label for="noteType" class="block text-sm font-medium text-gray-700">Категория*:</label>
                 <select id="noteType" name="noteType" class="mt-1 p-2 border rounded-md w-full">
                     <option value="private">Личное</option>
-                    <option value="doctor">Доступно врачу для просмотра</option>
+                    <option value="doctor">Лекарства</option>
                 </select>
             </div>
 

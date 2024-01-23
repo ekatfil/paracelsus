@@ -5,13 +5,13 @@
 
 
 
-body {
-  background-color: #BFDBD6;
-}
+// body {
+//   background-color: #006d7a;
+// }
 
-html {
-  background-color: #BFDBD6;
-}
+// html {
+//   background-color: #BFDBD6;
+// }
 
 .title {
   font-size: 1.625rem;
@@ -41,7 +41,7 @@ html {
 }
 
 .reg-btn {
-  background-color: #758481;
+  background-color: #002245;
   border-radius: 0.625rem;
   font-size: 1rem;
   font-weight: 500;
@@ -50,19 +50,15 @@ html {
 
 
 .save-note-btn {
-  background-color: #758481;
+  background-color: #002245;
   border-radius: 0.625rem;
   font-size: 1rem;
   font-weight: 500;
 }
 
 .note-modal {
-  margin-top: 60%;
-
-  @media screen and (max-width: 425px) {
-    margin-top: 68vh;
-  }
-
+  margin-top: 200px;
+  margin-left: 50%;
 }
 
 .visible {

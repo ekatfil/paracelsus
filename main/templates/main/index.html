@@ -3,24 +3,19 @@
 
 {% block content %}
 
-<div class="flex w-full flex-col md:flex-row p-4">
+<div class="container flex w-full flex-col md:flex-row p-4 mt-20 mb-20">
     <div class="flex flex-col w-full md:w-1/2">
-        <h1 class="title uppercase mb-7">ПАРАЦЕЛЬС</h1>
-        <p class="text-xl text-white mb-7">
-                Добро пожаловать в ваш персональный медицинский календарь!
-            <br><br>
-                Делайте записи о своем самочувствии, принимаемых лекарствах, изменениях в образе жизни и любых симптомах, которые заметили. 
-            Создавайте заметки, предназначенные для вашего врача. Описывайте изменения в вашем состоянии здоровья, ставьте вопросы и делитесь своими беспокойствами.
-            <br>
-                Ваше здоровье в ваших руках. Начнем вместе следить за ним!
-        </p>
+        <h1 class="title uppercase mb-7 text-5xl">{{ profile.title }}</h1>
+        <p class="text-3xl text-white mb-7">{{ profile.slogan }}</p>
+        <p class="mb-7 text-xl"> {{ profile.description|safe }}</p>
 
         <div class="flex w-1/2">
-            <a href="{% url 'main:registration' %}"class="join-btn text-white px-4 py-2 rounded-md drop-shadow-md font-medium">Присоединиться</a>
+            <a href="{% url 'main:registration' %}"class="join-btn text-white px-4 py-2 rounded-md drop-shadow-md text-xl">Присоединиться</a>
         </div>
+
     </div>
     <div class="flex w-full md:w-1/2 justify-center place-items-center">
-        <img src="{% static 'img/main.png' %}" alt="">
+        <img src="{{ profile.img.url }}" alt="{{ profile.title }}">
     </div>
 </div>
 

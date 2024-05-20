@@ -27,31 +27,31 @@ class Profile(models.Model):
     img = models.FileField("Главная картинка")
 
     def __str__(self):
-        return self.title
-
+        return f"{self.title}"
 
 
 class Page(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+
+    user = models.OneToOneField(User,
+                                on_delete=models.CASCADE,
+                                related_name="profile")
     # last_name = models.CharField(max_length=155)
     # first_name = models.CharField(max_length=155)
     patronymic = models.CharField(max_length=155, null=True, blank=True)
     birth_date = models.DateField(null=True, blank=True)
     snils = models.PositiveIntegerField(
-        validators=[
-            MinValueValidator(100_000_000_00),
-            MaxValueValidator(999_999_999_99)
-        ],
-        null=True,
-        blank=True
-    ) 
+                validators=[MinValueValidator(100_000_000_00),
+                            MaxValueValidator(999_999_999_99)],
+                null=True,
+                blank=True,)
+
     pfp = models.ImageField(upload_to='static/img', blank=True, null=True)
     is_doctor = models.BooleanField(default=False)
     profession = models.CharField(max_length=155, blank=True, null=True)
     education = models.TextField(blank=True, null=True)
 
-    def __str__(self) -> str:
-        return self.user.username
+    def __str__(self):
+        return f"{self.user.username}"
     
     class Meta:
         verbose_name = "Профиль пользователей"
@@ -60,6 +60,7 @@ class Page(models.Model):
 
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
+
     if created:
         Page.objects.create(user=instance)
 
@@ -68,16 +69,20 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
+
 CATEGORY_APPOINTMENT = (
-    ("Личное", "Личное"),
-    ("Лекарства", "Лекарства")
+    ("Личное", "Личное"), ("Лекарства", "Лекарства")
 )
+
+
 class Appointment(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     day = models.DateField()
     time = models.TimeField(blank=True, null=True)
-    category = models.CharField(max_length=155, choices=CATEGORY_APPOINTMENT, default="Личное")
+    category = models.CharField(max_length=155,
+                                choices=CATEGORY_APPOINTMENT,
+                                default="Личное")
     name = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
 
@@ -87,9 +92,7 @@ class Appointment(models.Model):
 
 class GroupDoctor(models.Model):
     users = models.ManyToManyField(User, related_name="groups_doctor")
-    title = models.CharField(max_length=155) 
+    title = models.CharField(max_length=155)
 
-    def __str__(self) -> str:
+    def __str__(self):
         return self.title
-
-
